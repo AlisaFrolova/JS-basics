@@ -239,10 +239,58 @@ testPromise.then(message => {
 })
 
 //fetch
+//1.
 fetch("http://example-api.com")
-.then(response => { //SUCCESS
-    //do something with the response
+.then(response => { //SUCCESS //and also work with errors
+    //do something with the response. example:
+    if(!response.ok){
+        throw new Error("error: " + response.status)
+    }
+    return response.json()
 })
-.catch(response => {//FAILURE
+.then (data => { //.then number 2
+    //smth smth smth
+})
+.catch(response => {//FAILURE (usually only one catch for all the .thens)
     //throw an error (hint: remember cpp and work with erros? that's it)
 })
+.finally(() => { //doesnt care if the promise was successful or not, so runs once the promise is settled
+    //smth
+})
+
+//2.
+async function bestFunction(){
+    try{
+        const response = await fetch(apiURL)
+        if(!response.ok){
+            throw new Error("error: " + response.status)
+        }
+        const data = await response.json()
+        //work with received data
+    }
+    catch(error){
+        console.log(error)
+    }
+    finally{ //doesnt care if the promise was successful or not, so runs once the promise is settled
+    //smth
+    }
+}
+
+//note 1:
+// myPromise
+// .then(() => {}) //handle success
+// .catch(() => {}) //handle error
+// .finally(() => {}) //run once finished
+
+//note 2:
+// async function myFunction(){
+//  try {
+// const result = await anyPromise;
+// } catch (error){
+////handle error
+// } finally {
+////run once finished
+// }
+// }
+
+
