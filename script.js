@@ -5,7 +5,7 @@ prompt("message") //input
 console.log("message") //just writes text
 
 let name // basic variable
-const name_C //const variable
+const name_C =" " //const variable
 
 //>= <= > < == != //conditional operators (the same as in cpp)
 //!BUT : == (if there are differenet types, they will be set to one), === (won't change types at all, more recommended)
@@ -159,7 +159,7 @@ event.currentTarget //— element, on which the event is set
 event.preventDefalut() //— cancel the browser's standart behaviour for this event
 
 //__7__ example for drag and drop objects
-const block = document.querySelector('.draggable');
+const block = document.querySelector('.draggable'); 
 
 block.addEventListener('mousedown', (event) => {
     // function that moves a block followind the mouse
@@ -208,3 +208,41 @@ function moveBlock(){
     block.style.left = `${coordX}px`
     block.style.top = `${coordY}px`
 }
+
+//__8__ fetch and promises
+function fetchFunction(){
+    fetch(apiURL)
+    .then (response => {
+        console.log("B")
+    })
+}
+
+console.log("A")
+fetchFunction()
+console.log("C")
+//the result: A C B, because the function is asynchronous
+
+const testPromise = new Promise((resolve, reject) => { //the function here is called the Executor, which receives 2 parameters (Resolve and Reject)
+    const result = 5 + 5;
+    if (result === 10){
+        resolve("Done!") //if promise worked without any issues --- success
+    } else{
+        reject("Something went wrong") //issues --- failure
+    }
+    //in brakets there also could be objects or anything else (in reject(X) and etc)
+}); //promise is literally a promise
+
+testPromise.then(message => {
+    console.log(message) //if promise returned success. usually there would be path to the next step of app logic
+}).catch(message =>{
+    console.log(message) //if promise returned failure. usually there would be error page or smth like that
+})
+
+//fetch
+fetch("http://example-api.com")
+.then(response => { //SUCCESS
+    //do something with the response
+})
+.catch(response => {//FAILURE
+    //throw an error (hint: remember cpp and work with erros? that's it)
+})
