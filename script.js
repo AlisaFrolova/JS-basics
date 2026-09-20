@@ -294,3 +294,12 @@ async function bestFunction(){
 // }
 
 
+//9 local storage
+localStorage.setItem(key, value)
+localStorage.getItem(key)
+
+const object = { }
+const objectJSON = JSON.stringify(object) //creates string with object keys and values
+localStorage.setItem("object", objectJSON)
+const getObject = localStorage.getItem("object")
+const objectData = JSON.parse(getObject)
