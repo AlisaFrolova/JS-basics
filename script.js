@@ -159,7 +159,7 @@ event.currentTarget //— element, on which the event is set
 event.preventDefalut() //— cancel the browser's standart behaviour for this event
 
 //__7__ example for drag and drop objects
-const block = document.querySelector('.draggable'); 
+block = document.querySelector('.draggable'); 
 
 block.addEventListener('mousedown', (event) => {
     // function that moves a block followind the mouse
@@ -178,7 +178,7 @@ block.addEventListener('mousedown', (event) => {
     }, { once: true }); // { once: true } deletes automatically when finished
 });
 
-const block = document.querySelector(".move")
+let block = document.querySelector(".move")
 let coordX = 0;
 let coordY = 0;
 document.body.addEventListener("keydown", moveBlock)
@@ -292,6 +292,12 @@ async function bestFunction(){
 ////run once finished
 // }
 // }
+//fetch example:
+let apiKey = "69eea7577f7bdf59547ca01ebad31937";
+let city = "Minsk";
+let url = `http://api.openweathermap.org/data/2.5/weather?id=15&q=${city}&lang=ru&units=metric&appid=${apiKey}`;
+
+fetch(url).then(data => data.json()).then(res => console.log(res))
 
 
 //9 local storage
